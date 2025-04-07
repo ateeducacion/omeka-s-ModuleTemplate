@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace IsolatedSites;
+namespace ModuleTemplate;
 
 //use ThreeDViewer\Media\FileRenderer\Viewer3DRenderer;
 
@@ -27,9 +27,9 @@ return [
             ],
         ],
     ],
-    'IsolatedSites' => [
+    'ModuleTemplate' => [
         'settings' => [
-            'activate_IsolatedSites' => true,
+            'activate_ModuleTemplate' => true,
         ]
     ],
 ];

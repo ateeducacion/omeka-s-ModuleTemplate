@@ -1,6 +1,6 @@
 {
-    "name": "ateeducacion/omeka-s-threedviewer",
-    "description": "Filtes out from the admin browser sites where the logged in user has no role",
+    "name": "ateeducacion/omeka-s-moduletemplate",
+    "description": "Module template for Omeka S",
     "type": "omeka-s-module",
     "license": "GPL-3.0-or-later",
     "authors": [
@@ -9,9 +9,9 @@
             "email": "ate.educacion@gobiernodecanarias.org"
         }
     ],
-    "homepage": "https://github.com/ateeducacion/omeka-s-IsolatedSites",
+    "homepage": "https://github.com/ateeducacion/omeka-s-ModuleTemplate",
     "support": {
-        "issues": "https://github.com/ateeducacion/omeka-s-IsolatedSites/issues"
+        "issues": "https://github.com/ateeducacion/omeka-s-ModuleTemplate/issues"
     },
     "keywords": [
         "Omeka S",
@@ -41,12 +41,12 @@
     },
     "autoload": {
         "psr-4": {
-            "IsolatedSites\\": "src/"
+            "ModuleTemplate\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "IsolatedSitesTest\\": "test/"
+            "ModuleTemplateTest\\": "test/"
         }
     },
     "repositories": [

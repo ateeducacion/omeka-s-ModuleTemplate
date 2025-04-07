@@ -58,11 +58,11 @@ build: check-docker
 
 # Run the linter to check PHP code style
 lint:
-	vendor/bin/phpcs . --standard=PSR2 --ignore=vendor/,assets/,node_modules/,tests/js/,tests/ --colors --extensions=php
+	"vendor/bin/phpcs" . --standard=PSR2 --ignore=vendor/,assets/,node_modules/,tests/js/,tests/ --colors --extensions=php
 
 # Automatically fix PHP code style issues
 fix:
-	vendor/bin/phpcbf . --standard=PSR2 --ignore=vendor/,assets/,node_modules/,tests/js/,tests/ --colors --extensions=php
+	"vendor/bin/phpcbf" . --standard=PSR2 --ignore=vendor/,assets/,node_modules/,tests/js/,tests/ --colors --extensions=php
 
 # Open a shell inside the omekas container
 shell: check-docker
@@ -72,7 +72,7 @@ shell: check-docker
 clean: check-docker
 	docker compose down -v --remove-orphans
 
-# Generate the ThreeDViewer-X.X.X.zip package
+# Generate the ModuleTemplate-X.X.X.zip package
 package:
 	@if [ -z "$(VERSION)" ]; then \
 		echo "Error: VERSION not specified. Use 'make package VERSION=1.2.3'"; \
@@ -80,8 +80,8 @@ package:
 	fi
 	@echo "Updating version to $(VERSION) in module.ini..."
 	$(SED_INPLACE) 's/^\([[:space:]]*version[[:space:]]*=[[:space:]]*\).*$$/\1"$(VERSION)"/' config/module.ini
-	@echo "Creating ZIP archive: ThreeDViewer-$(VERSION).zip..."
-	composer archive --format=zip --file="ThreeDViewer-$(VERSION)"
+	@echo "Creating ZIP archive: ModuleTemplate-$(VERSION).zip..."
+	composer archive --format=zip --file="ModuleTemplate-$(VERSION)"
 	@echo "Restoring version to 0.0.0 in module.ini..."
 	$(SED_INPLACE) 's/^\([[:space:]]*version[[:space:]]*=[[:space:]]*\).*$$/\1"0.0.0"/' config/module.ini
 
@@ -96,7 +96,7 @@ generate-pot:
 	    --keyword=translatePlural:1,2 \
 	    --output=language/xgettext.pot
 	@echo "Extracting strings marked with // @translate..."
-	vendor/zerocrates/extract-tagged-strings/extract-tagged-strings.php > language/tagged.pot
+	"vendor/zerocrates/extract-tagged-strings/extract-tagged-strings.php" > language/tagged.pot
 	@echo "Merging xgettext.pot and tagged.pot into template.pot..."
 	msgcat language/xgettext.pot language/tagged.pot --use-first -o language/template.pot
 	@rm -f language/xgettext.pot language/tagged.pot

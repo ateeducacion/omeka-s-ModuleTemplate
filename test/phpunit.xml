@@ -7,8 +7,8 @@
     bootstrap="./bootstrap.php"
     >
     <testsuites>
-        <testsuite name="IsoltatedSitesTest">
-            <directory>./IsolatedSitesTest</directory>
+        <testsuite name="ModuleTemplateTest">
+            <directory>./ModuleTemplateTest</directory>
         </testsuite>
     </testsuites>
 </phpunit>
