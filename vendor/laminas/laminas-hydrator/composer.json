@@ -1,0 +1,82 @@
+{
+    "name": "laminas/laminas-hydrator",
+    "description": "Serialize objects to arrays, and vice versa",
+    "license": "BSD-3-Clause",
+    "keywords": [
+        "laminas",
+        "hydrator"
+    ],
+    "homepage": "https://laminas.dev",
+    "support": {
+        "docs": "https://docs.laminas.dev/laminas-hydrator/",
+        "issues": "https://github.com/laminas/laminas-hydrator/issues",
+        "source": "https://github.com/laminas/laminas-hydrator",
+        "rss": "https://github.com/laminas/laminas-hydrator/releases.atom",
+        "chat": "https://laminas.dev/chat",
+        "forum": "https://discourse.laminas.dev"
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        },
+        "platform": {
+            "php": "7.4.99"
+        }
+    },
+    "extra": {
+        "laminas": {
+            "component": "Laminas\\Hydrator",
+            "config-provider": "Laminas\\Hydrator\\ConfigProvider"
+        }
+    },
+    "require": {
+        "php": "^7.4 || ~8.0.0 || ~8.1.0",
+        "laminas/laminas-stdlib": "^3.3",
+        "webmozart/assert": "^1.10"
+    },
+    "require-dev": {
+        "laminas/laminas-coding-standard": "~2.3.0",
+        "laminas/laminas-eventmanager": "^3.5.0",
+        "laminas/laminas-modulemanager": "^2.11.0",
+        "laminas/laminas-serializer": "^2.13.0",
+        "laminas/laminas-servicemanager": "^3.14.0",
+        "phpbench/phpbench": "^1.2.5",
+        "phpunit/phpunit": "~9.5.21",
+        "psalm/plugin-phpunit": "^0.17.0",
+        "psr/cache": "1.0.1",
+        "vimeo/psalm": "^4.24.0"
+    },
+    "suggest": {
+        "laminas/laminas-eventmanager": "^3.2, to support aggregate hydrator usage",
+        "laminas/laminas-serializer": "^2.9, to use the SerializableStrategy",
+        "laminas/laminas-servicemanager": "^3.14, to support hydrator plugin manager usage"
+    },
+    "autoload": {
+        "psr-4": {
+            "Laminas\\Hydrator\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "LaminasTest\\Hydrator\\": "test/",
+            "LaminasBench\\Hydrator\\": "benchmark/"
+        }
+    },
+    "scripts": {
+        "benchmark": "phpbench run --revs=2 --iterations=2 --report=aggregate",
+        "check": [
+            "@cs-check",
+            "@test"
+        ],
+        "cs-check": "phpcs",
+        "cs-fix": "phpcbf",
+        "static-analysis": "psalm --shepherd --stats",
+        "test": "phpunit --colors=always",
+        "test-coverage": "phpunit --colors=always --coverage-clover clover.xml"
+    },
+    "conflict": {
+        "zendframework/zend-hydrator": "*",
+        "laminas/laminas-servicemanager": "<3.14.0"
+    }
+}
