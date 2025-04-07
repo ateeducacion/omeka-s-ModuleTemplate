@@ -3,7 +3,7 @@
 This repository provides a template to help you quickly get started building custom modules for [Omeka S](https://omeka.org/s/). It includes a basic file structure, example configuration, and guidance for extending Omeka functionality following its best practices.
 
 ## 📁 Structure
-
+```text
 YourModule/
 ├── config/
 │   └── module.ini               # Module metadata
