@@ -1,0 +1,36 @@
+services:
+
+  omekas:
+    image: ghcr.io/erseco/omeka-s-docker:latest
+    restart: unless-stopped
+    ports:
+      - 8000:80
+    volumes:
+      - omekas_data:/var/www/html/volume:Z
+      - ./:/var/www/html/volume/modules/IsolatedSites
+    environment:
+      MYSQL_DATABASE: omeka
+      MYSQL_USER: omeka
+      MYSQL_PASSWORD: omeka
+      MYSQL_HOST: mariadb
+      APPLICATION_ENV: development
+      OMEKA_THEMES: https://github.com/omeka-s-themes/default/releases/download/v1.9.1/theme-default-v1.9.1.zip
+      OMEKA_MODULES: |
+        https://github.com/Daniel-KM/Omeka-S-module-Common/releases/download/3.4.66/Common-3.4.66.zip      
+        https://github.com/Daniel-KM/Omeka-S-module-EasyAdmin/releases/download/3.4.29/EasyAdmin-3.4.29.zip
+        https://github.com/Daniel-KM/Omeka-S-module-Adminer/releases/download/3.4.5-4.8.4/Adminer-3.4.5-4.8.4.zip
+
+  mariadb:
+    image: mariadb:latest
+    restart: unless-stopped
+    volumes:
+      - mariadb_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: omeka
+      MYSQL_DATABASE: omeka
+      MYSQL_USER: omeka
+      MYSQL_PASSWORD: omeka
+
+volumes:
+  mariadb_data:
+  omekas_data:
