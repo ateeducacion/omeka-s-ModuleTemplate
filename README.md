@@ -5,6 +5,7 @@ This repository provides a template to help you quickly get started building cus
 ## 📁 Structure
 
 YourModule/
+
 ├── config/
 │   └── module.ini               # Module metadata
 ├── src/
