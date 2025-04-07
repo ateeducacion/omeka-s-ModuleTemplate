@@ -1,43 +1,22 @@
-# IsolatedSites Module for Omeka S
+# Omeka S Module Template
 
+This repository provides a template to help you quickly get started building custom modules for [Omeka S](https://omeka.org/s/). It includes a basic file structure, example configuration, and guidance for extending Omeka functionality following its best practices.
 
-## Features
-- By default, sites where the logged in user has no role are filtered out from the admin browse page  
-- In Profiles->User Settings: "View all" checkbox allow users checked by admin user to view all the items in admin browse page.
+## 📁 Structure
 
-
-## Installation
-
-### Manual Installation
-
-1. Download the latest release from the GitHub repository
-2. Extract the zip file to your Omeka S `modules` directory
-3. Log in to the Omeka S admin panel and navigate to Modules
-5. Click "Install" next to Three3DViewer
-
-### Using Docker
-
-A Docker Compose file is provided for easy testing:
-
-1. Make sure you have Docker and Docker Compose installed
-2. Clone this repository
-3. From the repository root, run:
-
-```bash
-make up
-```
-
-4. Wait for the containers to start (this may take a minute)
-5. Access Omeka S at http://localhost:8080
-6. Finish the installation and login as admin user
-7. Navigate to Modules and install the Three3DViewer module
-
-## Installation
-
-See general end user documentation for [Installing a module](http://omeka.org/s/docs/user-manual/modules/#installing-modules)
-
-## Usage
-
+YourModule/
+├── config/
+│   └── module.ini               # Module metadata
+├── src/
+│   ├── Module.php               # Main module class (entry point)
+│   └── [YourNamespace]/
+│       └── [Classes].php        # Your custom PHP classes (e.g., Forms, Listeners, Helpers)
+├── view/
+│   └── your-module/             # Templates for your module (if needed)
+├── asset/                       # Static assets (JS, CSS, images)
+│   └── js/
+├── test/                        # Unit or integration tests
+└── README.md                    # Documentation
 
 
 ## Requirements
