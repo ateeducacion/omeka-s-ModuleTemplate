@@ -14,7 +14,7 @@ use Omeka\Stdlib\Message;
 use ModuleTemplate\Form\ConfigForm;
 
 /**
- * Main class for the IsoltatedSites module.
+ * Main class for the module.
  */
 class Module extends AbstractModule
 {
