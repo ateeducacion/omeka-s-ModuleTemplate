@@ -1,7 +1,6 @@
+*.zip
 .aider*
 .DS_Store
-vendor/
-*.zip
-# PHPUnit cache files
-test/.phpunit.result.cache
+.phpunit.result.cache
 themes/
+vendor/
