@@ -1,9 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace ModuleTemplates\Form;
+namespace ModuleTemplateTest\Form;
 
 use PHPUnit\Framework\TestCase;
-use ModuleTemplates\Form\ConfigForm;
+use ModuleTemplate\Form\ConfigForm;
 use Laminas\Form\Element;
 use Laminas\Form\Form;
 
