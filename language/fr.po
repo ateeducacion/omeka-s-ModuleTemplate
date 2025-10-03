@@ -1,0 +1,88 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: ModuleTemplate\n"
+"POT-Creation-Date: 2025-01-01 00:00+0000\n"
+"PO-Revision-Date: 2025-01-01 00:00+0000\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+# Demo fields
+#: src/Form/ConfigForm.php:18
+msgid "DEMO: enable feature"
+msgstr "DEMO : activer la fonctionnalité"
+
+#: src/Form/ConfigForm.php:19
+msgid "Demo field to test checkbox behavior."
+msgstr ""
+"Champ de démonstration pour tester le comportement de la case à cocher."
+
+#: src/Form/ConfigForm.php:34
+msgid "DEMO: free text"
+msgstr "DEMO : texte libre"
+
+#: src/Form/ConfigForm.php:35
+msgid "Demo field to test single-line input."
+msgstr "Champ de démonstration pour tester une saisie sur une seule ligne."
+
+#: src/Form/ConfigForm.php:47
+msgid "DEMO: textarea"
+msgstr "DEMO : zone de texte"
+
+#: src/Form/ConfigForm.php:48
+msgid "Demo field to test multi-line input."
+msgstr "Champ de démonstration pour tester la saisie multi-lignes."
+
+#: src/Form/ConfigForm.php:60
+msgid "DEMO: number (px)"
+msgstr "DEMO : nombre (px)"
+
+#: src/Form/ConfigForm.php:61
+msgid "Demo field to test numeric input."
+msgstr "Champ de démonstration pour tester la saisie numérique."
+
+#: src/Form/ConfigForm.php:75
+msgid "DEMO: select"
+msgstr "DEMO : sélection"
+
+#: src/Form/ConfigForm.php:76
+msgid "Demo field to test dropdown selection."
+msgstr "Champ de démonstration pour tester la sélection déroulante."
+
+#: src/Form/ConfigForm.php:78
+msgid "Option A"
+msgstr "Option A"
+
+#: src/Form/ConfigForm.php:79
+msgid "Option B"
+msgstr "Option B"
+
+#: src/Form/ConfigForm.php:80
+msgid "Option C"
+msgstr "Option C"
+
+#: src/Form/ConfigForm.php:90
+msgid "DEMO: color"
+msgstr "DEMO : couleur"
+
+#: src/Form/ConfigForm.php:91
+msgid "Demo field to test color picker."
+msgstr "Champ de démonstration pour tester le sélecteur de couleur."
+
+#: src/Form/ConfigForm.php:100
+msgid "DEMO: email address"
+msgstr "DEMO : adresse e‑mail"
+
+#: src/Form/ConfigForm.php:101
+msgid "Demo field to test email input."
+msgstr "Champ de démonstration pour tester la saisie d’e‑mail."
+
+#: src/Form/ConfigForm.php:110
+msgid "DEMO: URL"
+msgstr "DEMO : URL"
+
+#: src/Form/ConfigForm.php:111
+msgid "Demo field to test URL input."
+msgstr "Champ de démonstration pour tester la saisie d’URL."

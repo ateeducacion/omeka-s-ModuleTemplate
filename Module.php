@@ -73,11 +73,20 @@ class Module extends AbstractModule
         $config = $services->get('Config');
         $settings = $services->get('Omeka\Settings');
         
-        $form = new ConfigForm;
+        $form = new ConfigForm();
         $form->init();
-        
+
+        // Seed form fields with saved settings or defaults
         $form->setData([
             'activate_ModuleTemplate_cb' => $settings->get('activate_ModuleTemplate', 1),
+            'moduletemplate_demo_toggle' => $settings->get('moduletemplate_demo_toggle', false) ? '1' : '0',
+            'moduletemplate_demo_text' => $settings->get('moduletemplate_demo_text', 'Default text'),
+            'moduletemplate_demo_textarea' => $settings->get('moduletemplate_demo_textarea', "Line 1\nLine 2"),
+            'moduletemplate_demo_number' => $settings->get('moduletemplate_demo_number', 500),
+            'moduletemplate_demo_select' => $settings->get('moduletemplate_demo_select', 'b'),
+            'moduletemplate_demo_color' => $settings->get('moduletemplate_demo_color', '#3366ff'),
+            'moduletemplate_demo_email' => $settings->get('moduletemplate_demo_email', 'demo@example.com'),
+            'moduletemplate_demo_url' => $settings->get('moduletemplate_demo_url', 'https://example.com'),
         ]);
         
         return $renderer->formCollection($form, false);
@@ -96,9 +105,23 @@ class Module extends AbstractModule
         $config = $controller->params()->fromPost();
 
         $value = isset($config['activate_ModuleTemplate_cb']) ? $config['activate_ModuleTemplate_cb'] : 0;
-
-        // Save configuration settings in omeka settings database
         $settings->set('activate_ModuleTemplate', $value);
+
+        // Persist demo settings (cast/basic normalization)
+        $settings->set(
+            'moduletemplate_demo_toggle',
+            isset($config['moduletemplate_demo_toggle'])
+                && $config['moduletemplate_demo_toggle'] === '1'
+        );
+        $settings->set('moduletemplate_demo_text', (string)($config['moduletemplate_demo_text'] ?? ''));
+        $settings->set('moduletemplate_demo_textarea', (string)($config['moduletemplate_demo_textarea'] ?? ''));
+        if (isset($config['moduletemplate_demo_number']) && is_numeric($config['moduletemplate_demo_number'])) {
+            $settings->set('moduletemplate_demo_number', (int)$config['moduletemplate_demo_number']);
+        }
+        $settings->set('moduletemplate_demo_select', (string)($config['moduletemplate_demo_select'] ?? ''));
+        $settings->set('moduletemplate_demo_color', (string)($config['moduletemplate_demo_color'] ?? ''));
+        $settings->set('moduletemplate_demo_email', (string)($config['moduletemplate_demo_email'] ?? ''));
+        $settings->set('moduletemplate_demo_url', (string)($config['moduletemplate_demo_url'] ?? ''));
     }
     
     // /**

@@ -30,6 +30,15 @@ return [
     'ModuleTemplate' => [
         'settings' => [
             'activate_ModuleTemplate' => true,
+            // Demo defaults so the form shows meaningful values
+            'moduletemplate_demo_toggle' => false,
+            'moduletemplate_demo_text' => 'Default text',
+            'moduletemplate_demo_textarea' => "Line 1\nLine 2",
+            'moduletemplate_demo_number' => 500,
+            'moduletemplate_demo_select' => 'b',
+            'moduletemplate_demo_color' => '#3366ff',
+            'moduletemplate_demo_email' => 'demo@example.com',
+            'moduletemplate_demo_url' => 'https://example.com',
         ]
     ],
 ];

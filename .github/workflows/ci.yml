@@ -1,0 +1,42 @@
+---
+name: CI
+
+on:
+  pull_request:
+  push:
+    tags:
+      - '*'
+    branches:
+      - '*' 
+
+jobs:
+  lint_and_test:
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout the code
+      - uses: actions/checkout@v4
+
+      - name: PHP setup
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'  # Adjust the version according to your needs
+          extensions: mbstring, intl, curl, dom, json, pdo, mysql, xml, zip
+          tools: composer
+
+      - name: Install dependencies
+        run: composer install --no-interaction --prefer-dist
+
+      - name: Install gettext
+        run: sudo apt-get install -y gettext
+
+      - name: Check untranslated strings
+        run: make check-untranslated
+
+      - name: Generate .mo file
+        run: make compile-mo
+
+      - name: Run code linting
+        run: make lint
+
+      - name: Run unit tests
+        run: make test
