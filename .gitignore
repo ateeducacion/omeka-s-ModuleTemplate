@@ -1,0 +1,6 @@
+*.zip
+.aider*
+.DS_Store
+.phpunit.result.cache
+themes/
+vendor/

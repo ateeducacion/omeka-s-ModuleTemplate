@@ -1,35 +1,69 @@
 services:
 
   omekas:
-    image: ghcr.io/erseco/omeka-s-docker:latest
+    image: erseco/alpine-omeka-s:develop
     restart: unless-stopped
+    depends_on:
+      - mariadb
     ports:
-      - 8000:80
+      - "8080:8080"
+    environment:
+      # Database
+      DB_HOST: mariadb
+      DB_NAME: omeka
+      DB_USER: omeka
+      DB_PASSWORD: omeka
+      DB_PORT: 3306
+
+      # Admin + site
+      OMEKA_ADMIN_EMAIL: admin@example.com
+      OMEKA_ADMIN_NAME: "Site Administrator"
+      OMEKA_ADMIN_PASSWORD: PLEASE_CHANGEME
+      OMEKA_SITE_TITLE: "Omeka S Sample Site"
+      # Auto-import sample data CSV on first boot (requires CSVImport module)
+      OMEKA_CSV_IMPORT_FILE: /data/sample_data.csv
+      # App environment and base URL
+      APPLICATION_ENV: development
+      SITE_URL: http://localhost:8080
+
+      # Minimal themes/modules set (names or URLs supported)
+      OMEKA_THEMES: "default"
+      OMEKA_MODULES: |
+        Common
+        EasyAdmin
+        Adminer
+        Log
+
+      # Hooks to finish configuration on first boot
+      PRE_CONFIGURE_COMMANDS: |
+        echo 'Pre-configure hook'
+      POST_CONFIGURE_COMMANDS: |
+        # Create an Editor user if missing
+        omeka-s-cli user:add "editor@example.com" "Editor" editor "1234" || true
+
+        # Enable the ModuleTemplate module from local source
+        omeka-s-cli module:install ModuleTemplate || true
+
     volumes:
       - omekas_data:/var/www/html/volume:Z
-      - ./:/var/www/html/volume/modules/IsolatedSites
-    environment:
-      MYSQL_DATABASE: omeka
-      MYSQL_USER: omeka
-      MYSQL_PASSWORD: omeka
-      MYSQL_HOST: mariadb
-      APPLICATION_ENV: development
-      OMEKA_THEMES: https://github.com/omeka-s-themes/default/releases/download/v1.9.1/theme-default-v1.9.1.zip
-      OMEKA_MODULES: |
-        https://github.com/Daniel-KM/Omeka-S-module-Common/releases/download/3.4.66/Common-3.4.66.zip      
-        https://github.com/Daniel-KM/Omeka-S-module-EasyAdmin/releases/download/3.4.29/EasyAdmin-3.4.29.zip
-        https://github.com/Daniel-KM/Omeka-S-module-Adminer/releases/download/3.4.5-4.8.4/Adminer-3.4.5-4.8.4.zip
+      - ./:/var/www/html/volume/modules/ModuleTemplate
+      - ./data:/data:ro
 
   mariadb:
     image: mariadb:latest
     restart: unless-stopped
-    volumes:
-      - mariadb_data:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: omeka
       MYSQL_DATABASE: omeka
       MYSQL_USER: omeka
       MYSQL_PASSWORD: omeka
+    volumes:
+      - mariadb_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-homariadb", "-uomeka", "-pomeka"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
 
 volumes:
   mariadb_data:
