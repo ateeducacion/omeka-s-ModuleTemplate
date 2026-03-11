@@ -1,0 +1,38 @@
+{
+  "$schema": "https://ateeducacion.github.io/omeka-s-playground/assets/blueprints/blueprint-schema.json",
+  "debug": {
+    "enabled": true
+  },
+  "landingPage": "/admin",
+  "siteOptions": {
+    "title": "ModuleTemplate Playground",
+    "locale": "es",
+    "timezone": "Atlantic/Canary"
+  },
+  "users": [
+    {
+      "username": "admin",
+      "email": "admin@example.com",
+      "password": "password",
+      "role": "global_admin"
+    }
+  ],
+  "modules": [
+    {
+      "name": "ModuleTemplate",
+      "state": "activate",
+      "source": {
+        "type": "url",
+        "url": "https://github.com/ateeducacion/omeka-s-ModuleTemplate/archive/refs/heads/main.zip"
+      }
+    }
+  ],
+  "site": {
+    "title": "ModuleTemplate Demo",
+    "slug": "demo",
+    "theme": "default",
+    "summary": "Instalacion minima para probar el modulo ModuleTemplate en Omeka S Playground.",
+    "isPublic": true,
+    "setAsDefault": true
+  }
+}

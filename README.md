@@ -1,5 +1,10 @@
 # Omeka S Module Template
 
+<a href="https://ateeducacion.github.io/omeka-s-playground/?blueprint=https%3A%2F%2Fraw.githubusercontent.com%2Fateeducacion%2Fomeka-s-ModuleTemplate%2Frefs%2Fheads%2Fmain%2Fblueprint.json">
+  <img src="https://raw.githubusercontent.com/ateeducacion/omeka-s-playground/main/ogimage.png" alt="Try ModuleTemplate in your browser" width="220">
+</a><br>
+<small><a href="https://ateeducacion.github.io/omeka-s-playground/?blueprint=https%3A%2F%2Fraw.githubusercontent.com%2Fateeducacion%2Fomeka-s-ModuleTemplate%2Frefs%2Fheads%2Fmain%2Fblueprint.json">Try in your browser</a></small>
+
 ![Screenshot of the module](https://raw.githubusercontent.com/ateeducacion/omeka-s-ModuleTemplate/refs/heads/main/.github/assets/screenshot.png)
 
 This repository provides a minimal, modern template for building custom modules for Omeka S. It includes a Docker-based dev environment, packaging helpers, i18n utilities, and a clean starting structure.
@@ -67,4 +72,3 @@ ModuleTemplate/
 ## License
 
 Published under the GNU GPLv3 license. See [LICENSE](LICENSE).
-
