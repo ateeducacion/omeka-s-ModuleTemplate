@@ -1,0 +1,87 @@
+---
+name: PR Playground Preview
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, edited]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Post or update playground preview comment
+        uses: actions/github-script@v8
+        with:
+          script: |
+            const fs = require('fs');
+            const marker = '<!-- omeka-s-playground-preview -->';
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            const headRef = context.payload.pull_request.head.ref;
+            const prNumber = context.payload.pull_request.number;
+
+            // Read the root blueprint and replace the plugin URL with the PR branch ZIP
+            const blueprint = JSON.parse(fs.readFileSync('blueprint.json', 'utf8'));
+            const prZipUrl = `https://github.com/${owner}/${repo}/archive/refs/heads/${headRef}.zip`;
+            blueprint.plugins = blueprint.plugins.map(url =>
+              url.includes(`${owner}/${repo}`) ? prZipUrl : url
+            );
+
+            // Encode as base64url
+            function toBase64url(str) {
+              return Buffer.from(str)
+                .toString('base64')
+                .replace(/\+/g, '-')
+                .replace(/\//g, '_')
+                .replace(/=+$/, '');
+            }
+
+            const encoded = toBase64url(JSON.stringify(blueprint));
+            const playgroundUrl = `https://ateeducacion.github.io/omeka-s-playground/?blueprint-data=${encoded}`;
+            const imageUrl = 'https://raw.githubusercontent.com/ateeducacion/omeka-s-playground/refs/heads/main/ogimage.png';
+
+            const body = [
+              marker,
+              '## omeka-s Playground Preview',
+              '',
+              `<a href="${playgroundUrl}">`,
+              `  <img src="${imageUrl}" alt="Open this PR in Omeka-S Playground" width="220">`,
+              '</a><br>',
+              `<small><a href="${playgroundUrl}">Try this PR in your browser</a></small>`,
+              '',
+              'This preview loads the plugin directly from the PR branch ZIP in Omeka-S Playground.',
+            ].join('\n');
+
+            // Search for an existing comment with the marker
+            const { data: comments } = await github.rest.issues.listComments({
+              owner,
+              repo,
+              issue_number: prNumber,
+            });
+
+            const existing = comments.find(c => c.body && c.body.includes(marker));
+
+            if (existing) {
+              await github.rest.issues.updateComment({
+                owner,
+                repo,
+                comment_id: existing.id,
+                body,
+              });
+              core.info(`Updated existing preview comment #${existing.id}`);
+            } else {
+              await github.rest.issues.createComment({
+                owner,
+                repo,
+                issue_number: prNumber,
+                body,
+              });
+              core.info('Created new preview comment');
+            }
