@@ -20,3 +20,8 @@ Makefile                 export-ignore
 phpunit.xml              export-ignore
 renovate.json            export-ignore
 test.php                 export-ignore
+
+/.agents export-ignore
+/.claude export-ignore
+/AGENTS.md export-ignore
+/CLAUDE.md export-ignore
