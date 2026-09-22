@@ -1,5 +1,8 @@
 # Omeka S Module Template
 
+[![codecov](https://codecov.io/gh/ateeducacion/omeka-s-ModuleTemplate/branch/main/graph/badge.svg)](https://codecov.io/gh/ateeducacion/omeka-s-ModuleTemplate)
+
+
 <a href="https://ateeducacion.github.io/omeka-s-playground/?blueprint=https%3A%2F%2Fraw.githubusercontent.com%2Fateeducacion%2Fomeka-s-ModuleTemplate%2Frefs%2Fheads%2Fmain%2Fblueprint.json">
   <img src="https://raw.githubusercontent.com/ateeducacion/omeka-s-ModuleTemplate/refs/heads/main/.github/assets/playground-preview-button.svg" alt="Try ModuleTemplate in your browser" width="224">
 </a><br>
@@ -72,3 +75,7 @@ ModuleTemplate/
 ## License
 
 Published under the GNU GPLv3 license. See [LICENSE](LICENSE).
+
+## Coverage
+
+Run `make test-coverage` with PCOV or Xdebug enabled. CI measures `Module.php` and all PHP files in `src/`, requires at least 90% line coverage, and uploads the Clover report to Codecov using GitHub OIDC. Codecov requires 90% for both project and patch coverage.
