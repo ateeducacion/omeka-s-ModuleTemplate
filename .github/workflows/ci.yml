@@ -3,7 +3,13 @@ name: CI
 
 on:
   pull_request:
+    paths-ignore:
+      - '.agents/skills/**'
+      - '.claude/skills/**'
   push:
+    paths-ignore:
+      - '.agents/skills/**'
+      - '.claude/skills/**'
     tags:
       - '*'
     branches:
