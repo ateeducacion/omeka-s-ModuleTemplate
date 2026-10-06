@@ -15,34 +15,33 @@ services:
       DB_PASSWORD: omeka
       DB_PORT: 3306
 
-      # Admin + site
+      # Core install. The container ignores the blueprint's `install`, so keep
+      # these in line with blueprint.json (an existing admin is never changed).
       OMEKA_ADMIN_EMAIL: admin@example.com
-      OMEKA_ADMIN_NAME: "Site Administrator"
-      OMEKA_ADMIN_PASSWORD: PLEASE_CHANGEME
-      OMEKA_SITE_TITLE: "Omeka S Sample Site"
+      OMEKA_ADMIN_NAME: admin
+      OMEKA_ADMIN_PASSWORD: password
+      OMEKA_SITE_TITLE: "ModuleTemplate Playground"
+      OMEKA_LOCALE: es
+      OMEKA_TIMEZONE: Atlantic/Canary
+
+      # The same blueprint.json as Omeka S Playground (users, this module, settings),
+      # re-applied on every start. Playground-only bits (x-playground) are ignored.
+      OMEKA_BLUEPRINT: /var/www/html/volume/modules/ModuleTemplate/blueprint.json
+      # Keep the stack up if the blueprint fails (e.g. no network), instead of a restart loop
+      OMEKA_BLUEPRINT_ON_ERROR: warn
       # Auto-import sample data CSV on first boot (requires CSVImport module)
       OMEKA_CSV_IMPORT_FILE: /data/sample_data.csv
       # App environment and base URL
       APPLICATION_ENV: development
       SITE_URL: http://localhost:8080
 
-      # Minimal themes/modules set (names or URLs supported)
+      # Dev tools only: the module itself comes from the blueprint
       OMEKA_THEMES: "default"
       OMEKA_MODULES: |
         Common
         EasyAdmin
         Adminer
         Log
-
-      # Hooks to finish configuration on first boot
-      PRE_CONFIGURE_COMMANDS: |
-        echo 'Pre-configure hook'
-      POST_CONFIGURE_COMMANDS: |
-        # Create an Editor user if missing
-        omeka-s-cli user:add "editor@example.com" "Editor" editor "1234" || true
-
-        # Enable the ModuleTemplate module from local source
-        omeka-s-cli module:install ModuleTemplate || true
 
     volumes:
       - omekas_data:/var/www/html/volume:Z

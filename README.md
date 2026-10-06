@@ -19,6 +19,7 @@ This repository provides a minimal, modern template for building custom modules 
 - Stop stack: `make down`
 
 This template uses the image `erseco/alpine-omeka-s:develop`, which boots Omeka S with sensible defaults and tooling.
+On every start it applies `blueprint.json`, the same file as the Omeka S Playground (users, this module, settings).
 
 ### Sample Data
 
@@ -26,8 +27,8 @@ This template uses the image `erseco/alpine-omeka-s:develop`, which boots Omeka 
 - On first boot, the container will automatically import it if present.
 - Import manually any time: `make import-sample`
 
-Users created automatically:
-- `admin@example.com` (global_admin) password: `PLEASE_CHANGEME`
+Users created automatically (from `blueprint.json`):
+- `admin@example.com` (global_admin) password: `password`
 - `editor@example.com` (editor) password: `1234`
 
 ### Useful Make Targets
