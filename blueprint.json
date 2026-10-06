@@ -1,10 +1,6 @@
 {
-  "$schema": "https://ateeducacion.github.io/omeka-s-playground/assets/blueprints/blueprint-schema.json",
-  "debug": {
-    "enabled": true
-  },
-  "landingPage": "/admin",
-  "siteOptions": {
+  "$schema": "https://omeka-s-contrib.github.io/omeka-s-blueprints/schema/v0/blueprint-schema.json",
+  "install": {
     "title": "ModuleTemplate Playground",
     "locale": "es",
     "timezone": "Atlantic/Canary"
@@ -21,18 +17,23 @@
     {
       "name": "ModuleTemplate",
       "state": "activate",
-      "source": {
-        "type": "url",
-        "url": "https://github.com/ateeducacion/omeka-s-ModuleTemplate/archive/refs/heads/main.zip"
-      }
+      "source": "https://github.com/ateeducacion/omeka-s-ModuleTemplate/archive/refs/heads/main.zip"
     }
   ],
-  "site": {
-    "title": "ModuleTemplate Demo",
-    "slug": "demo",
-    "theme": "default",
-    "summary": "Instalacion minima para probar el modulo ModuleTemplate en Omeka S Playground.",
-    "isPublic": true,
-    "setAsDefault": true
+  "sites": [
+    {
+      "title": "ModuleTemplate Demo",
+      "slug": "demo",
+      "theme": "default",
+      "summary": "Instalacion minima para probar el modulo ModuleTemplate en Omeka S Playground.",
+      "isPublic": true,
+      "setAsDefault": true
+    }
+  ],
+  "x-playground": {
+    "debug": {
+      "enabled": true
+    },
+    "landingPage": "/admin"
   }
 }
