@@ -18,7 +18,7 @@ This repository provides a minimal, modern template for building custom modules 
 - Start stack: `make up` then open `http://localhost:8080`
 - Stop stack: `make down`
 
-This template uses the image `erseco/alpine-omeka-s:develop`, which boots Omeka S with sensible defaults and tooling.
+This template uses the image `erseco/alpine-omeka-s:4.2` (the newest Omeka S 4.2 release, as the Playground), which boots Omeka S with sensible defaults and tooling.
 On every start it applies `blueprint.json`, the same file as the Omeka S Playground (users, this module, settings).
 
 ### Sample Data
@@ -57,7 +57,7 @@ ModuleTemplate/
 ├── language/                    # Translations (.po/.mo)
 ├── test/                        # Unit tests and bootstrap
 ├── data/sample_3d_data.csv      # Optional sample dataset for CSVImport
-├── docker-compose.yml           # Dev stack using alpine-omeka-s:develop
+├── docker-compose.yml           # Dev stack using alpine-omeka-s:4.2
 ├── Makefile                     # Dev helpers (docker, i18n, tests, packaging)
 └── README.md                    # This file
 ```
