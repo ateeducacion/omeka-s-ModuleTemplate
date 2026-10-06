@@ -11,6 +11,12 @@
       "email": "admin@example.com",
       "password": "password",
       "role": "global_admin"
+    },
+    {
+      "username": "editor",
+      "email": "editor@example.com",
+      "password": "1234",
+      "role": "editor"
     }
   ],
   "modules": [
