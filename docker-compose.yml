@@ -24,12 +24,13 @@ services:
       OMEKA_LOCALE: es
       OMEKA_TIMEZONE: Atlantic/Canary
 
-      # The same blueprint.json as Omeka S Playground (users, this module, settings),
+      # The same blueprint.json as Omeka S Playground (users, this module, the demo site, settings),
       # re-applied on every start. Playground-only bits (x-playground) are ignored.
       OMEKA_BLUEPRINT: /var/www/html/volume/modules/ModuleTemplate/blueprint.json
       # Keep the stack up if the blueprint fails (e.g. no network), instead of a restart loop
       OMEKA_BLUEPRINT_ON_ERROR: warn
-      # Auto-import sample data CSV on first boot (requires CSVImport module)
+      # Auto-import sample data CSV on first boot (requires CSVImport module); the items
+      # join the demo site, which takes new items as in the admin form
       OMEKA_CSV_IMPORT_FILE: /data/sample_data.csv
       # App environment and base URL
       APPLICATION_ENV: development
