@@ -38,7 +38,7 @@ Keep local procedures specific to this repository and update them when their pat
 
 `github-actions-hardening` covers workflow changes. Repository policy uses version tags, not commit
 SHAs: `actions/checkout@v7`, `peter-evans/create-pull-request@v8`, and
-`devantler-tech/actions/update-agent-skills@v13.3.3` (no upstream `v13` tag at review time).
+`erseco/update-agent-skills@v1`.
 Use least-privilege jobs and pass untrusted values through environment variables, never inline scripts.
 
 Install external skills with `gh skills install OWNER/REPO PATH --dir .agents/skills`;
